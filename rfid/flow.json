@@ -1,0 +1,52 @@
+[
+  {
+    "id": "rfid1",
+    "type": "serial in",
+    "z": "flow1",
+    "name": "USB-Reader",
+    "serial": "COM3",
+    "baud": "9600",
+    "databits": "8",
+    "parity": "none",
+    "stopbits": "1",
+    "newline": "\\n",
+    "x": 120,
+    "y": 100,
+    "wires": [["parser1"]]
+  },
+  {
+    "id": "parser1",
+    "type": "function",
+    "z": "flow1",
+    "name": "Parse Card",
+    "func": "msg.payload = msg.payload.toString().trim();\nif (msg.payload.length < 4) return null;\nmsg.card = msg.payload;\nreturn msg;",
+    "outputs": 1,
+    "x": 300,
+    "y": 100,
+    "wires": [["post1"]]
+  },
+  {
+    "id": "post1",
+    "type": "http request",
+    "z": "flow1",
+    "name": "POST to School",
+    "method": "POST",
+    "ret": "txt",
+    "url": "http://YOUR-SCHOOL-DOMAIN/api/rfid-scan.php",
+    "tls": "",
+    "x": 500,
+    "y": 100,
+    "wires": [["notify1"]]
+  },
+  {
+    "id": "notify1",
+    "type": "ui_toast",
+    "z": "flow1",
+    "position": "top right",
+    "title": "RFID",
+    "name": "",
+    "x": 700,
+    "y": 100,
+    "wires": []
+  }
+]
