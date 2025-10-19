@@ -1,0 +1,7 @@
+
+--------------------------------------------------
+(1)  assets/css/app.css  (starter – can stay empty)
+--------------------------------------------------
+```css
+/* Taufik School – custom over Tailwind */
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;}
